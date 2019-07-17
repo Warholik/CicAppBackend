@@ -7,14 +7,17 @@ user_schema = {
     "properties": {
         "user_name": {
             "type": "string",
+            "maxLength": 20
         },
         "email": {
             "type": "string",
-            "format": "email"
+            "format": "email",
+            "maxLength": 20
         },
         "password": {
             "type": "string",
-            "minLength": 5
+            "minLength": 5,
+            "maxLength": 20
         }
     },
     "required": ["email", "password"],
