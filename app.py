@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, request, json
-from flask_mysqldb import MySQL
 from datetime import datetime
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
@@ -22,7 +21,7 @@ class User(db.Model):
     username = db.Column(db.String(20),unique=True, nullable=False)
     email = db.Column(db.String(120),unique=True, nullable=False)
     password = db.Column(db.String(100),nullable=False)
-    created_date = db.Column(DateTime, default=datetime.datetime.utcnow)
+    created_date = db.Column(db.DateTime,nullable=False, default=datetime.utcnow())
 
     def __repr__(self):
         return f"User('{self.username}','{self.email}')"

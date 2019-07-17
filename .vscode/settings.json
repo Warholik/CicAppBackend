@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "c:\\program files (x86)\\python37-32\\python.exe",
+    "python.linting.pylintArgs": ["--load-plugins", "pylint_flask"]
+}
