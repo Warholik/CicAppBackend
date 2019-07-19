@@ -2,13 +2,8 @@ from flask import jsonify, request, json
 from datetime import datetime
 from flask_jwt_extended import (create_access_token, create_refresh_token,jwt_required, jwt_refresh_token_required, get_jwt_identity)
 from cicapp import app, db, bcrypt
-from cicapp.modules import User
+from cicapp.models import UserModel
 from cicapp.schemas.user import validate_user
-
-
-@app.route("/")
-def home():
-    return jsonify({'result': "Helloka"})
 
 
 @app.route('/users/register', methods=['POST'])

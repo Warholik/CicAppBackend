@@ -1,0 +1,11 @@
+Linux:
+export FLASK_ENV=development
+export ORT 5000
+export DATABASE_URL= postgres://postgres:cicapp_postgres@localhost:5432/test
+export JWT_SECRET_KEY = xf2VW3xcasdasdWshyUSmlIjcGjUUzeF7nKq
+
+Windows:
+setx FLASK_ENV development
+setx PORT 5000 
+setx DATABASE_URL postgres://postgres:cicapp_postgres@localhost:5432/test
+setx JWT_SECRET_KEY  xf2VW3xcasdasdWshyUSmlIjcGjUUzeF7nKq

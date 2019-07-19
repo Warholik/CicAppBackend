@@ -1,3 +1,4 @@
+'''
 import datetime
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -19,3 +20,4 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1)
 jwt = JWTManager(app)
 
 from cicapp import routes
+'''
