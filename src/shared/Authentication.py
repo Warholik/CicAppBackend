@@ -1,9 +1,9 @@
 import jwt
 import os
 import datetime
-from flask import json
-from cicapp.models import UserModel
-
+from flask import json, Response, request, g
+from functools import wraps
+from ..models.UserModel import UserModel
 
 class Auth():
   @staticmethod

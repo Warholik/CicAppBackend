@@ -1,6 +1,8 @@
-from . import db,bcrypt
 from datetime import datetime
+from . import db,bcrypt
 
+pw_hash = bcrypt.generate_password_hash('hunter2')
+print(bcrypt.check_password_hash(pw_hash, 'hunter2'))
 
 class UserModel(db.Model):
 
