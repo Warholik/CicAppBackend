@@ -11,7 +11,7 @@ class Auth():
   Auth Class
   """
   @staticmethod
-  def generate_token(user_id):
+  def generate_token(email):
     """
     Generate Token Method
     """
@@ -19,7 +19,7 @@ class Auth():
       payload = {
         'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1),
         'iat': datetime.datetime.utcnow(),
-        'sub': user_id
+        'sub': email
       }
       return jwt.encode(
         payload,
@@ -41,7 +41,8 @@ class Auth():
     re = {'data': {}, 'error': {}}
     try:
       payload = jwt.decode(token, os.getenv('JWT_SECRET_KEY'))
-      re['data'] = {'user_id': payload['sub']}
+      print(payload)
+      re['data'] = {'email': payload['sub']}
       return re
     except jwt.ExpiredSignatureError as e1:
       re['error'] = {'message': 'token expired, please login again'}
@@ -58,6 +59,7 @@ class Auth():
     """
     @wraps(func)
     def decorated_auth(*args, **kwargs):
+      print(request.headers)
       if 'api-token' not in request.headers:
         return Response(
           mimetype="application/json",
@@ -73,14 +75,14 @@ class Auth():
           status=400
         )
         
-      user_id = data['data']['user_id']
-      check_user = UserModel.get_one_user(user_id)
+      user_email = data['data']['email']
+      check_user = UserModel.get_user_by_email(user_email)
       if not check_user:
         return Response(
           mimetype="application/json",
           response=json.dumps({'error': 'user does not exist, invalid token'}),
           status=400
         )
-      g.user = {'id': user_id}
+      g.user = {'email': user_email}
       return func(*args, **kwargs)
     return decorated_auth
