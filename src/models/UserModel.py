@@ -31,7 +31,7 @@ class UserModel(db.Model):
                 self.password = self.__generate_hash(
                     value)  # add this new line
             setattr(self, key, item)
-        self.modified_at = datetime.utcnow()
+        self.modified_at = datetime.datetime.utcnow()
         db.session.commit()
 
     def save(self):
@@ -70,5 +70,5 @@ class UserSchema(Schema):
   username = fields.Str(required=True)
   email = fields.Email(required=True)
   password = fields.Str(required=True, load_only=True)
-  created_at = fields.DateTime(dump_only=True)
+  created_date = fields.DateTime(dump_only=True)
   modified_at = fields.DateTime(dump_only=True)

@@ -65,9 +65,7 @@ def update():
   data, error = user_schema.load(req_data, partial=True)
   if error:
     return custom_response(error, 400)
-  print("#################################")
   user = UserModel.get_user_by_email(g.user.get('email'))
-  print("***************************************************")
   user.update(data)
   ser_user = user_schema.dump(user).data
   return custom_response(ser_user, 200)
